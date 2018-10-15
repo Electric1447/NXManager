@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d70000</color>
+    <color name="colorPrimaryDark">#bf0000</color>
+    <color name="colorAccent">#d70000</color>
+
+    <color name="refresh1">#009faf</color>
+    <color name="refresh2">#007f1f</color>
+    <color name="refresh3">#ffcf00</color>
+    <color name="refresh4">#9f0005</color>
+    <color name="text_color_primary">#ffffff</color>
+</resources>
