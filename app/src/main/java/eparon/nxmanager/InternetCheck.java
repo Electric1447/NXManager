@@ -13,6 +13,7 @@ import java.io.File;
 
 public class InternetCheck extends AppCompatActivity {
 
+    //Checking if network is available.
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -25,8 +26,8 @@ public class InternetCheck extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_netcheck);
 
-        deleteCache(this);
-        CheckConnection();
+        deleteCache(this); //Deleting cache on app startup to avoid bugs.
+        CheckConnection(); //Checking if the device has Internet Connectivity.
     }
 
     public void CheckConnection() {
@@ -38,17 +39,18 @@ public class InternetCheck extends AppCompatActivity {
         }
     }
 
-    public void CheckConnectionButton(View view) { CheckConnection();}
+    public void CheckConnectionButton(View view) { CheckConnection();} //Rechecking Internet Connectivity on button click.
 
     public static void deleteCache(Context context) {
         try {
-            File dir = context.getCacheDir();
-            deleteDir(dir);
+            File dir = context.getCacheDir(); //Getting cache file.
+            deleteDir(dir); //Deleting cache file function.
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    //Deleting cache file function (I did not write it).
     public static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();

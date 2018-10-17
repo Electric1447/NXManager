@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     double cFirmware = 0;
     double lFirmware;
 
-    String kernelname = System.getProperty("os.version");
-    String firmwarename = Build.DISPLAY;
+    String kernelname = System.getProperty("os.version"); //Getting Kernel name.
+    String firmwarename = Build.DISPLAY; //Getting Device Build Number.
     String kernelversion;
     String firmwareVersion;
     String pageTitle;
@@ -74,10 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout srl;
 
+    //Making that you can't press the back button.
     @Override
-    public void onBackPressed() {
-    }
+    public void onBackPressed() { }
 
+    //Checking if network is available.
     private boolean isNetworkAvailable2() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -111,22 +112,26 @@ public class MainActivity extends AppCompatActivity {
 
         changelogLink = findViewById(R.id.clhl);
 
-        getNXCurrentVersion();
+        getNXCurrentVersion(); //Getting current NX kernel version (dah).
 
-        renderWebPage(nxURL);
-        soldierRomCheck(fileArray);
+        renderWebPage(nxURL); //Rendering a webpage in the background to get the latest NX version.
+        soldierRomCheck(fileArray); //Checking if SoLdieR's rom is selected.
 
+        //SwipeRefreshLayout function
         srl = findViewById(R.id.swipelayout);
         srl.setColorSchemeResources(R.color.refresh1, R.color.refresh2, R.color.refresh3, R.color.refresh4);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //Making sure network is still available.
                 if (isNetworkAvailable2()) {
+                    //Reloading the latest kernel and rom.
                     ArrayList<String> fileArray = new ArrayList<>();
                     srl.setRefreshing(true);
                     renderWebPage(nxURL);
                     soldierRomCheck(fileArray);
                 } else {
+                    //If there is no Internet Connection, sending you back to InternetCheck activity.
                     Intent a = new Intent(MainActivity.this, InternetCheck.class);
                     startActivity(a);
                 }
@@ -136,40 +141,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Rendering a webpage in the background to get the latest NX version.
     public void renderWebPage(String urlToRender) {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                InternetCheck.deleteCache(getApplicationContext());
-                srl.setRefreshing(false);
-                mTitle = view.getTitle();
+                InternetCheck.deleteCache(getApplicationContext()); ///Deleting cache on to avoid bugs.
+                srl.setRefreshing(false); //Stop Refreshing animation.
+                mTitle = view.getTitle(); //Getting page title.
                 pageTitle = mTitle;
-                latestKernel = pageTitle.substring(24, 26);
+                latestKernel = pageTitle.substring(24, 26); //Shorting page title to the latest version.
                 lkernel = Integer.parseInt(latestKernel);
                 latestVersion.setText("R" + latestKernel);
-                nxColor();
+                nxColor(); //Colorizing the kernel text.
             }
         });
         mWebView.loadUrl(urlToRender);
     }
 
+    //Checking if SoLdieR's rom is selected.
     public void soldierRomCheck(final ArrayList<String> urls) {
         if (romInt == 1) {
-            firmwareVersion = firmwarename.substring(29);
+            firmwareVersion = firmwarename.substring(29); //Shorting the Build Number to only show the firmware version.
             cFirmwareVersion.setText(firmwareVersion);
-            cFirmware = Double.parseDouble(firmwareVersion);
+            cFirmware = Double.parseDouble(firmwareVersion); //Making the firmware version a double.
             new Thread(new Runnable() {
 
                 public void run() {
 
                     try {
+                        //Getting Changelog file from URL
                         URL url = new URL(soldierFile);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setConnectTimeout(60000);
 
+                        //Defining the BufferedReader to read from the file
                         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                         String str;
+                        //Reading the entire text file.
                         while ((str = in.readLine()) != null) {
                             urls.add(str);
                         }
@@ -178,17 +188,19 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MyTag", e.toString());
                     }
 
+                    //On finish
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            lFirmwareVersion.setText(urls.get(0));
+                            lFirmwareVersion.setText(urls.get(0)); //Setting the latest firmware version to be the first line of changelog file.
                             lFirmware = Double.parseDouble(lFirmwareVersion.getText().toString());
-                            fwColor();
+                            fwColor(); //Colorizing the firmware text.
                         }
                     });
 
                 }
             }).start();
         } else {
+            //If SoLdieR's rom isn't selected, making everything disappear.
             cFirmwareVersion.setText("");
             lFirmwareVersion.setText("");
             fTitle.setText("");
@@ -201,9 +213,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Getting current NX kernel version.
     public void getNXCurrentVersion() {
+        //Validating if NX kernel is installed.
         if (kernelname.length() > 11 && kernelname.length() < 14 && kernelname.substring(7, 9).equals("NX")) {
-            kernelversion = kernelname.substring(11);
+            kernelversion = kernelname.substring(11); //Shorting the kernel to only show the version.
             ckernel = Integer.parseInt(kernelversion);
             currentVersion.setText("R" + kernelversion);
         } else {
@@ -212,21 +226,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Setting the kernel text color.
     public void nxColor() {
         if (ckernel == 0) {
+            //Nx kernel not found.
             currentVersion.setTextColor(COLOR_YELLOW);
             latestVersion.setTextColor(COLOR_YELLOW);
         } else {
             if (ckernel == lkernel) {
+                //Nx kernel is the latest.
                 currentVersion.setTextColor(COLOR_GREEN);
                 latestVersion.setTextColor(COLOR_GREEN);
             } else {
+                //Nx kernel isn't the latest.
                 currentVersion.setTextColor(COLOR_RED);
                 latestVersion.setTextColor(COLOR_RED);
             }
         }
     }
 
+    //Setting the firmware text color.
     public void fwColor() {
         if (cFirmware == lFirmware) {
             cFirmwareVersion.setTextColor(COLOR_GREEN);
@@ -237,6 +256,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //All the buttons that send you somewhere (kinda obvious).
     public void GoInfo(View view) {
         Intent a = new Intent(MainActivity.this, Info.class);
         startActivity(a);
