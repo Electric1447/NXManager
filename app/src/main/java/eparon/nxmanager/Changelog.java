@@ -37,23 +37,23 @@ public class Changelog extends AppCompatActivity {
             public void run() {
 
                 try {
-                    //Getting Changelog file from URL
+                    //Getting Changelog file from URL.
                     URL url = new URL(soldierFile);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setConnectTimeout(60000);
 
-                    //Defining the BufferedReader to read from the file
+                    //Defining the BufferedReader to read from the file.
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                     String str;
 
                     //Reading the entire text file
                     while ((str = in.readLine()) != null) {
-                        if (lines == 0){finalstr = str;} //Setting the string to be the first line of the file
+                        if (lines == 0){finalstr = str;} //Setting the string to be the first line of the file.
                         else {
-                            finalstr = finalstr + System.lineSeparator() + str; //Adding the next lines after the first line
+                            finalstr = finalstr + System.lineSeparator() + str; //Adding the next lines after the first line.
                         }
-                        lines = 1; //Making the first line function only run once
+                        lines = 1; //Making the first line function only run once.
                     }
                     in.close();
                 } catch (Exception e) {

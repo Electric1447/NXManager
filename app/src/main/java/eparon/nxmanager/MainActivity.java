@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         changelogLink = findViewById(R.id.clhl);
 
-        getNXCurrentVersion(); //Getting current NX kernel version (dah).
+        getNXCurrentVersion(); //Getting current NX kernel version (dah)
 
         renderWebPage(nxURL); //Rendering a webpage in the background to get the latest NX version.
         soldierRomCheck(fileArray); //Checking if SoLdieR's rom is selected.

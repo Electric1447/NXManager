@@ -50,7 +50,7 @@ public class InternetCheck extends AppCompatActivity {
         }
     }
 
-    //Deleting cache file function (I did not write it).
+    //Deleting cache file function (I did not write it)
     public static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();

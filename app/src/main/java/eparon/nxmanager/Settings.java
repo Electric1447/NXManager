@@ -15,7 +15,7 @@ public class Settings extends AppCompatActivity {
 
     public String PREFS = "PrefsFile";
 
-    String firmwarename = Build.DISPLAY; //Getting Device Build Number.
+    String firmwarename = Build.DISPLAY; //Getting Device Build Number
 
     int romInt;
 
