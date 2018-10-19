@@ -3,8 +3,6 @@ package eparon.nxmanager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -15,9 +13,10 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.support.v4.widget.SwipeRefreshLayout;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -69,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
     String currentFirmware;
     String latestFirmware;
 
-    WebView mWebView;
-    String mTitle = "";
-
     SwipeRefreshLayout srl;
 
     //Making that you can't press the back button.
@@ -100,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         currentVersion = findViewById(R.id.currentver);
         cFirmwareVersion = findViewById(R.id.currentFirmware);
         lFirmwareVersion = findViewById(R.id.latestFirmware);
-        mWebView = findViewById(R.id.web_view);
 
         fTitle = findViewById(R.id.fTitle);
         cfText = findViewById(R.id.cfText);
@@ -114,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         getNXCurrentVersion(); //Getting current NX kernel version (dah)
 
-        renderWebPage(nxURL); //Rendering a webpage in the background to get the latest NX version.
+        getNXVersionFromURL(); //Getting latest NX version from url title.
         soldierRomCheck(fileArray); //Checking if SoLdieR's rom is selected.
 
         //SwipeRefreshLayout function
@@ -128,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     //Reloading the latest kernel and rom.
                     ArrayList<String> fileArray = new ArrayList<>();
                     srl.setRefreshing(true);
-                    renderWebPage(nxURL);
+                    getNXVersionFromURL();
                     soldierRomCheck(fileArray);
                 } else {
                     //If there is no Internet Connection, sending you back to InternetCheck activity.
@@ -138,25 +133,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-    //Rendering a webpage in the background to get the latest NX version.
-    public void renderWebPage(String urlToRender) {
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                InternetCheck.deleteCache(getApplicationContext()); ///Deleting cache on to avoid bugs.
-                srl.setRefreshing(false); //Stop Refreshing animation.
-                mTitle = view.getTitle(); //Getting page title.
-                pageTitle = mTitle;
-                latestKernel = pageTitle.substring(24, 26); //Shorting page title to the latest version.
-                lkernel = Integer.parseInt(latestKernel);
-                latestVersion.setText("R" + latestKernel);
-                nxColor(); //Colorizing the kernel text.
+    //Getting latest NX version from url title.
+    public void getNXVersionFromURL (){
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    //Getting page title from URL using Jsoup.
+                    Document document = Jsoup.connect(nxURL).followRedirects(false).timeout(60000).get();
+                    pageTitle = document.title();
+
+                } catch (Exception e) { Log.d("MyTag", e.toString()); }
+
+                //On finish
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        InternetCheck.deleteCache(getApplicationContext()); ///Deleting cache on to avoid bugs.
+                        srl.setRefreshing(false); //Stop Refreshing animation.
+                        latestKernel = pageTitle.substring(24, 26); //Shorting page title to the latest version.
+                        lkernel = Integer.parseInt(latestKernel);
+                        latestVersion.setText("R" + latestKernel);
+                        nxColor(); //Colorizing the kernel text.
+                    }
+                });
+
             }
-        });
-        mWebView.loadUrl(urlToRender);
+        }).start();
     }
 
     //Checking if SoLdieR's rom is selected.
@@ -234,11 +238,11 @@ public class MainActivity extends AppCompatActivity {
             latestVersion.setTextColor(COLOR_YELLOW);
         } else {
             if (ckernel == lkernel) {
-                //Nx kernel is the latest.
+                //Latest NX kernel version is installed.
                 currentVersion.setTextColor(COLOR_GREEN);
                 latestVersion.setTextColor(COLOR_GREEN);
             } else {
-                //Nx kernel isn't the latest.
+                //Latest NX kernel version isn't installed.
                 currentVersion.setTextColor(COLOR_RED);
                 latestVersion.setTextColor(COLOR_RED);
             }
@@ -248,9 +252,11 @@ public class MainActivity extends AppCompatActivity {
     //Setting the firmware text color.
     public void fwColor() {
         if (cFirmware == lFirmware) {
+            //Latest firmware version is installed.
             cFirmwareVersion.setTextColor(COLOR_GREEN);
             lFirmwareVersion.setTextColor(COLOR_GREEN);
         } else {
+            //Latest firmware version isn't installed.
             cFirmwareVersion.setTextColor(COLOR_RED);
             lFirmwareVersion.setTextColor(COLOR_RED);
         }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="eparon.nxmanager.Info">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="Info"
                 android:textColor="#FFF"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -33,7 +33,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -144,6 +143,14 @@
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="GotoGithub"
+                android:paddingTop="5dp"
+                android:text="@string/github"
+                android:textColor="#000093" />
 
         </LinearLayout>
 

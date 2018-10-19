@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipelayout"
@@ -8,293 +7,282 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp" />
-
-        <android.support.design.widget.CoordinatorLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_weight="0.4"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="NX Kernel"
+                    android:textColor="#000"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:padding="15dp"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"
+                    android:paddingBottom="5dp">
 
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFF"
-                        android:text="@string/app_name"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center"
+                        android:layout_weight="14">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/current_version"
+                            android:textColor="#000"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="9">
+
+                        <TextView
+                            android:id="@+id/currentver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kernel"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="14">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/latest_version"
+                            android:textColor="#000"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="9">
+
+                        <TextView
+                            android:id="@+id/latestver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custombutton"
+                    android:onClick="GotoXDA"
+                    android:text="@string/xda"
+                    android:textSize="17sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:text="NX Kernel"
-                        android:textColor="#000"
-                        android:textSize="32sp"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/fTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="60dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/soldier"
+                    android:textColor="#000"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"
+                    android:paddingBottom="5dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:baselineAligned="false"
-                        android:paddingBottom="5dp">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="14">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/cfText"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="14">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/current_version"
-                                android:textColor="#000"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="9">
-
-                            <TextView
-                                android:id="@+id/currentver"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="kernel"
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                        </LinearLayout>
+                            android:text="@string/current_firmware"
+                            android:textColor="#000"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:baselineAligned="false">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="9">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/currentFirmware"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="14">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/latest_version"
-                                android:textColor="#000"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="9">
-
-                            <TextView
-                                android:id="@+id/latestver"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/loading"
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                        </LinearLayout>
+                            android:text="rom"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/custombutton"
-                        android:onClick="GotoXDA"
-                        android:text="@string/xda"
-                        android:textSize="17sp" />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/fTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="60dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/soldier"
-                        android:textColor="#000"
-                        android:textSize="32sp"
-                        android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:baselineAligned="false"
-                        android:paddingBottom="5dp">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="14">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/lfText"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="14">
-
-                            <TextView
-                                android:id="@+id/cfText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/current_firmware"
-                                android:textColor="#000"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="9">
-
-                            <TextView
-                                android:id="@+id/currentFirmware"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="rom"
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                        </LinearLayout>
+                            android:text="@string/latest_firmware"
+                            android:textColor="#000"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:baselineAligned="false">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="9">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/latestFirmware"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="14">
-
-                            <TextView
-                                android:id="@+id/lfText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/latest_firmware"
-                                android:textColor="#000"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="9">
-
-                            <TextView
-                                android:id="@+id/latestFirmware"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/loading"
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                        </LinearLayout>
+                            android:text="@string/loading"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/clhl"
-                        android:onClick="GotoChangelog"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/changelog"
-                        android:paddingTop="5dp"
-                        android:textColor="#000093"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/clhl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="GotoChangelog"
+                    android:paddingTop="5dp"
+                    android:text="@string/changelog"
+                    android:textColor="#000093" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:baselineAligned="false">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <Button
+                            android:id="@+id/xda_rom"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1">
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/custombutton"
+                            android:onClick="GotoSoldierXDA"
+                            android:text="@string/xda_rom"
+                            android:textSize="13sp" />
 
-                            <Button
-                                android:id="@+id/xda_rom"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="@drawable/custombutton"
-                                android:onClick="GotoSoldierXDA"
-                                android:text="@string/xda_rom"
-                                android:textSize="13sp" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <Button
+                            android:id="@+id/soldier_site"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1">
-
-                            <Button
-                                android:id="@+id/soldier_site"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="@drawable/custombutton"
-                                android:onClick="GotoSoldierSite"
-                                android:text="@string/soldier_site"
-                                android:textSize="13sp" />
-
-                        </LinearLayout>
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/custombutton"
+                            android:onClick="GotoSoldierSite"
+                            android:text="@string/soldier_site"
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -302,44 +290,44 @@
 
             </LinearLayout>
 
-            <LinearLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left">
+
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|left">
+                android:layout_margin="28dp"
+                android:clickable="true"
+                android:onClick="GoInfo"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:src="@drawable/ic_info_white_24dp"
+                app:fabCustomSize="32dp" />
 
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="28dp"
-                    android:clickable="true"
-                    android:onClick="GoInfo"
-                    android:scaleX="1.7"
-                    android:scaleY="1.7"
-                    android:src="@drawable/ic_info_white_24dp"
-                    app:fabCustomSize="32dp" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right">
 
-            <LinearLayout
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right">
+                android:layout_margin="28dp"
+                android:clickable="true"
+                android:onClick="GoSettings"
+                android:scaleX="1.7"
+                android:scaleY="1.7"
+                android:src="@drawable/ic_settings_white_24dp"
+                app:fabCustomSize="32dp" />
 
-                <android.support.design.widget.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="28dp"
-                    android:clickable="true"
-                    android:onClick="GoSettings"
-                    android:scaleX="1.7"
-                    android:scaleY="1.7"
-                    android:src="@drawable/ic_settings_white_24dp"
-                    app:fabCustomSize="32dp" />
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </android.support.design.widget.CoordinatorLayout>
-
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

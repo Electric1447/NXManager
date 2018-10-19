@@ -6,8 +6,8 @@ android {
         applicationId "eparon.nxmanager"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 141
-        versionName "1.4.1"
+        versionCode 150
+        versionName "1.5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,4 +27,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.jsoup:jsoup:1.11.3'
 }
