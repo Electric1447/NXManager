@@ -7,4 +7,5 @@ Features:
  - Getting Changelog for SoLdieR9312's Custom S8 Rom.
  
  NX Kernel: https://bit.ly/2NRIyuy
+ 
  Download: https://drive.google.com/uc?export=download&id=1pfXlL37naDS9vOwhDN40yhYbsr14rJtv
