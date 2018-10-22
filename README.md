@@ -13,6 +13,6 @@
  
  
  ### Changelog:
- **1.6.0:** Added Dark Theme! /n
- **1.5.0:** Changed getting latest kernel version to Jsoup (much improved performence).
- **1.4.1:** Initial GitHub Release.
+ - **1.6.0:** Added Dark Theme!
+ - **1.5.0:** Changed getting latest kernel version to Jsoup (much improved performence).
+ - **1.4.1:** Initial GitHub Release.
