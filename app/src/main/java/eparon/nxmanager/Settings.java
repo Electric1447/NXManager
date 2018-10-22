@@ -6,22 +6,45 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
     public String PREFS = "PrefsFile";
 
+    int COLOR_WHITE = 0xFFFFFFFF;
+    int COLOR_BLACK = 0xFF000000;
+
     String firmwarename = Build.DISPLAY; //Getting Device Build Number
 
     int romInt;
+    boolean darkTheme = false;
+
+    Switch DarkThemeSwitch;
+
+    CoordinatorLayout scl;
+
+    TextView STitle;
+    TextView Settings1;
+    TextView Settings2;
 
     //Reloading MainActivity when back is pressed.
     @Override
     public void onBackPressed() {
+        //Checking if Dark Theme switch is checked.
+        darkTheme = DarkThemeSwitch.isChecked(); //Setting the Dark Theme of the switch case.
+        SharedPreferences settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("darkTheme", darkTheme);
+        editor.apply();
+
+        //Going to MainActivity.
         Intent a = new Intent(Settings.this, MainActivity.class);
         startActivity(a);
     }
@@ -31,8 +54,27 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        SharedPreferences rom = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        romInt = rom.getInt("romInt", romInt);
+        //Get SharedPreferences.
+        SharedPreferences settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        romInt = settings.getInt("romInt", romInt);
+        darkTheme = settings.getBoolean("darkTheme", darkTheme);
+
+        DarkThemeSwitch = findViewById(R.id.darkthemeswitch);
+        DarkThemeSwitch.setChecked(darkTheme);
+
+        scl = findViewById(R.id.settingslayout);
+
+        STitle = findViewById(R.id.sTitle);
+        Settings1 = findViewById(R.id.settings1);
+        Settings2 = findViewById(R.id.settings2);
+
+        //Set Dark Theme (if enabled).
+        if (darkTheme) {
+            scl.setBackgroundColor(COLOR_BLACK);
+            STitle.setTextColor(COLOR_WHITE);
+            Settings1.setTextColor(COLOR_WHITE);
+            Settings2.setTextColor(COLOR_WHITE);
+        }
     }
 
     public void selectRom(View view) {
@@ -48,8 +90,8 @@ public class Settings extends AppCompatActivity {
                 } else {
                     //Sets the rom to the selected rom.
                     romInt = which;
-                    SharedPreferences rom = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = rom.edit();
+                    SharedPreferences settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = settings.edit();
                     editor.putInt("romInt", romInt);
                     editor.apply();
                 }

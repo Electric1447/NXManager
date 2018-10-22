@@ -42,6 +42,7 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/kerneltitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
@@ -63,6 +64,7 @@
                         android:layout_weight="14">
 
                         <TextView
+                            android:id="@+id/staticCV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/current_version"
@@ -102,6 +104,7 @@
                         android:layout_weight="14">
 
                         <TextView
+                            android:id="@+id/staticLV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/latest_version"

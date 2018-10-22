@@ -31,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
     int COLOR_GREEN = 0xFF00FF00;
     int COLOR_RED = 0xFFFF0000;
     int COLOR_YELLOW = 0xFFFFCC00;
+    int COLOR_WHITE = 0xFFFFFFFF;
+    int COLOR_BLACK = 0xFF000000;
 
     int romInt;
+    boolean darkTheme;
 
     String nxURL = "https://forum.xda-developers.com/galaxy-s8/samsung-galaxy-s8--s8-cross-device-development/kernel-nox-kernel-v1-t3721469";
     String soldierXDAURL = "https://forum.xda-developers.com/galaxy-s8/samsung-galaxy-s8--s8-cross-device-development/g95xf-fd-n-oreo-beta-2-soldier9312-zqk4-t3703183";
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     TextView soldierxdaButton;
 
     TextView changelogLink;
+
+    TextView KernelTitle;
+    TextView StaticCV;
+    TextView StaticLV;
 
     int ckernel = 0;
     int lkernel;
@@ -87,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences rom = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        romInt = rom.getInt("romInt", romInt);
+        //Get SharedPreferences.
+        SharedPreferences settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        romInt = settings.getInt("romInt", romInt);
+        darkTheme = settings.getBoolean("darkTheme", darkTheme);
 
         ArrayList<String> fileArray = new ArrayList<>();
 
@@ -106,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
         soldierxdaButton = findViewById(R.id.xda_rom);
 
         changelogLink = findViewById(R.id.clhl);
+
+        KernelTitle = findViewById(R.id.kerneltitle);
+        StaticCV = findViewById(R.id.staticCV);
+        StaticLV = findViewById(R.id.staticLV);
 
         getNXCurrentVersion(); //Getting current NX kernel version (dah)
 
@@ -133,6 +146,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Set Dark Theme (if enabled).
+        if (darkTheme){
+            srl.setBackgroundColor(COLOR_BLACK);
+            KernelTitle.setTextColor(COLOR_WHITE);
+            StaticCV.setTextColor(COLOR_WHITE);
+            StaticLV.setTextColor(COLOR_WHITE);
+            latestVersion.setTextColor(COLOR_WHITE);
+            currentVersion.setTextColor(COLOR_WHITE);
+            cFirmwareVersion.setTextColor(COLOR_WHITE);
+            lFirmwareVersion.setTextColor(COLOR_WHITE);
+            fTitle.setTextColor(COLOR_WHITE);
+            cfText.setTextColor(COLOR_WHITE);
+            lfText.setTextColor(COLOR_WHITE);
+        }
     }
 
     //Getting latest NX version from url title.

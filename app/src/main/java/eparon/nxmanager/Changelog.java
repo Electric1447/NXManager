@@ -1,5 +1,8 @@
 package eparon.nxmanager;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,22 +16,40 @@ import java.net.URL;
 
 public class Changelog extends AppCompatActivity {
 
+    public String PREFS = "PrefsFile";
+
+    int COLOR_WHITE = 0xFFFFFFFF;
+    int COLOR_BLACK = 0xFF000000;
+
     String soldierFile = "http://www.renovate-ice.com/svn/soldier9312-g95x/trunk/META-INF/com/google/android/aroma/changelog.txt";
+
+    boolean darkTheme;
 
     int lines = 0;
     String finalstr = "";
 
     TextView Changelog;
+    ConstraintLayout ccl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changelog);
 
+        //Get SharedPreferences.
+        SharedPreferences settings = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        darkTheme = settings.getBoolean("darkTheme", darkTheme);
+
         GetChangelog();
 
         Changelog = findViewById(R.id.changelog);
+        ccl = findViewById(R.id.ccl);
 
+        //Set Dark Theme (if enabled).
+        if (darkTheme) {
+            ccl.setBackgroundColor(COLOR_BLACK);
+            Changelog.setTextColor(COLOR_WHITE);
+        }
     }
 
     public void GetChangelog() {
