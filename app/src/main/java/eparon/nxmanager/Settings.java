@@ -85,8 +85,8 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //If pressed SoLdieR9312's Rom, it will check if the device is running it.
-                if (which == 1 && firmwarename.length() != 33 || !firmwarename.substring(0, 12).equals("SoLdieR9312s")){
-                    Toast.makeText(getApplicationContext(), "SoLdieR9312s ROM Version 10.0+ Not Found.", Toast.LENGTH_LONG).show();
+                if (which == 1 && firmwarename.length() != 30 || !firmwarename.substring(0, 12).equals("SoLdieR9312s")){
+                    Toast.makeText(getApplicationContext(), "SoLdieR9312s ROM Version 11.2+ Not Found.", Toast.LENGTH_LONG).show();
                 } else {
                     //Sets the rom to the selected rom.
                     romInt = which;

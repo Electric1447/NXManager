@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     //Checking if SoLdieR's rom is selected.
     public void soldierRomCheck(final ArrayList<String> urls) {
         if (romInt == 1) {
-            firmwareVersion = firmwarename.substring(29); //Shorting the Build Number to only show the firmware version.
+            firmwareVersion = firmwarename.substring(26); //Shorting the Build Number to only show the firmware version.
             cFirmwareVersion.setText(firmwareVersion);
             cFirmware = Double.parseDouble(firmwareVersion); //Making the firmware version a double.
             new Thread(new Runnable() {
