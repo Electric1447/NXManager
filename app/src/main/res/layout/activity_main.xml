@@ -260,7 +260,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
                             android:background="@drawable/custombutton"
                             android:onClick="GotoSoldierXDA"
@@ -279,12 +279,32 @@
                             android:id="@+id/soldier_site"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
                             android:background="@drawable/custombutton"
                             android:onClick="GotoSoldierSite"
                             android:text="@string/soldier_site"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/download"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/custombutton"
+                            android:onClick="DownloadRom"
+                            android:text="Download Latest Verion"
                             android:textSize="13sp" />
 
                     </LinearLayout>

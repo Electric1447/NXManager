@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     String soldierXDAURL = "https://forum.xda-developers.com/galaxy-s8/samsung-galaxy-s8--s8-cross-device-development/g95xf-fd-n-oreo-beta-2-soldier9312-zqk4-t3703183";
     String soliderSiteURL = "http://soldier9312.de/";
     String soldierFile = "http://www.renovate-ice.com/svn/soldier9312-g95x/trunk/META-INF/com/google/android/aroma/changelog.txt";
+    String downloadURL = "http://www.renovate-ice.com/soldier9312/release/g95x/json.php?download=latest";
 
     TextView latestVersion;
     TextView currentVersion;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView soldiersiteButton;
     TextView soldierxdaButton;
+    TextView dlromButton;
 
     TextView changelogLink;
 
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         soldiersiteButton = findViewById(R.id.soldier_site);
         soldierxdaButton = findViewById(R.id.xda_rom);
+        dlromButton = findViewById(R.id.download);
 
         changelogLink = findViewById(R.id.clhl);
 
@@ -239,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
             lfText.setText("");
             soldierxdaButton.setVisibility(View.GONE);
             soldiersiteButton.setVisibility(View.GONE);
+            dlromButton.setVisibility(View.GONE);
             changelogLink.setClickable(false);
             changelogLink.setText("");
         }
@@ -318,6 +322,11 @@ public class MainActivity extends AppCompatActivity {
     public void GotoChangelog(View view) {
         Intent a = new Intent(MainActivity.this, Changelog.class);
         startActivity(a);
+    }
+
+    public void DownloadRom(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(downloadURL));
+        startActivity(browserIntent);
     }
 
 }
