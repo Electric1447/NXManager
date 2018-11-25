@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             lfText.setText("");
             soldierxdaButton.setVisibility(View.GONE);
             soldiersiteButton.setVisibility(View.GONE);
-            dlromButton.setVisibility(View.GONE);
+            dlromButton.setVisibility(View.GONE);//
             changelogLink.setClickable(false);
             changelogLink.setText("");
         }
