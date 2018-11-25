@@ -13,6 +13,7 @@
  
  
  ### Changelog:
+ - **1.7.0-1:** Fixed text size.
  - **1.7.0:** Added rom downloading.
  - **1.6.1:** Changed SoLdieR9312's Rom support to be version 11.2+.
  - **1.6.0:** Added Dark Theme!
