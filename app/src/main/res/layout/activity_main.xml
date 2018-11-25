@@ -285,7 +285,7 @@
                             android:background="@drawable/custombutton"
                             android:onClick="GotoSoldierSite"
                             android:text="@string/soldier_site"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -304,8 +304,8 @@
                             android:layout_marginBottom="5dp"
                             android:background="@drawable/custombutton"
                             android:onClick="DownloadRom"
-                            android:text="Download Latest Verion"
-                            android:textSize="13sp" />
+                            android:text="Download Latest Rom"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
