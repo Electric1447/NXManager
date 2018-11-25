@@ -13,6 +13,7 @@
  
  
  ### Changelog:
+ - **1.7.0:** Added rom downloading.
  - **1.6.1:** Changed SoLdieR9312's Rom support to be version 11.2+.
  - **1.6.0:** Added Dark Theme!
  - **1.5.0:** Changed getting latest kernel version to Jsoup (much improved performence).
